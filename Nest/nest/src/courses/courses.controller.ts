@@ -14,30 +14,29 @@ import { CoursesService } from './courses.service';
 
 @Controller('courses')
 export class CoursesController {
-  constructor(private readonly cousesService: CoursesService) {}
+  constructor(private readonly coursesService: CoursesService) {}
   @Get()
-  findAll(@Res() res) {
-    return res.status(200).send(this.cousesService.getHelloWord());
+  findAll() {
+    return this.coursesService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cousesService.getFindId(id);
+    return this.coursesService.findOne(id);
   }
 
   @Post()
-  @HttpCode(HttpStatus.NO_CONTENT)
-  create(@Body('name') name) {
-    return name;
+  create(@Body() body) {
+    return this.coursesService.create(body);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() body) {
-    return `Atualização do Curso #${id}`;
+    return this.coursesService.update(id, body);
   }
 
   @Delete(':id')
   remove(@Param('id') id) {
-    return `Exclusão do curso #${id}`;
+    return this.coursesService.remove(id);
   }
 }
