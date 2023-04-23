@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Course } from './entities/course.entity';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @Injectable()
 export class CoursesService {
@@ -33,7 +34,7 @@ export class CoursesService {
     this.courses.push(createCourseDto);
   }
 
-  update(id: string, updateCourseDto: any) {
+  update(id: string, updateCourseDto: UpdateCourseDto) {
     const indexCourse = this.courses.findIndex((course) => course.id === id);
 
     this.courses[indexCourse] = {
