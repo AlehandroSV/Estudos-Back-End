@@ -15,4 +15,9 @@ class SiteController extends Controller
 
         return view('bemvindo');
     }
+
+    public function exit()
+    {
+        return view('sair');
+    }
 }
