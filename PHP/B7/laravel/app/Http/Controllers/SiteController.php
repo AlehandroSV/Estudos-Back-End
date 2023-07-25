@@ -13,7 +13,10 @@ class SiteController extends Controller
         // Verificar se um usuário existe
         // Buscar dados de um usuário, etc...
 
-        return view('bemvindo');
+        $nome = "Alehandro";
+        $idade = 19;
+
+        return view('bemvindo', ['apelido_nome' => $nome, 'idade' => $idade]);
     }
 
     public function exit()
