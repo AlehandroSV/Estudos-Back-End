@@ -14,9 +14,13 @@ class SiteController extends Controller
         // Buscar dados de um usuário, etc...
 
         $nome = "Alehandro";
+        $sobrenome = "Vidal";
         $idade = 19;
+        $dataNacimento = "26/07/2004";
 
-        return view('bemvindo', ['apelido_nome' => $nome, 'idade' => $idade]);
+        $data = ['apelidoNome' => $nome, 'idade' => $idade, 'sobrenome' => $sobrenome, 'dataNacimento' => $dataNacimento];
+
+        return view('bemvindo', $data);
     }
 
     public function exit()

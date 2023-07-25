@@ -8,8 +8,9 @@
 </head>
 
 <body>
-    <h1>Bem Vindo, {{ $apelido_nome }}!</h1>
+    <h1>Bem Vindo, {{ $apelidoNome }} {{ $sobrenome }}!</h1>
     <h2>Idade: {{ $idade }}</h2>
+    <h2>Data Nacimento: {{ $dataNacimento }}</h2>
 </body>
 
 </html>
