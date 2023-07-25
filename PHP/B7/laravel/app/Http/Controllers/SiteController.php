@@ -15,10 +15,10 @@ class SiteController extends Controller
 
         $nome = "Alehandro";
         $sobrenome = "Vidal";
-        $idade = 19;
-        $dataNacimento = "26/07/2004";
+        // $idade = 19;
+        // $dataNacimento = "26/07/2004";
 
-        $data = ['apelidoNome' => $nome, 'idade' => $idade, 'sobrenome' => $sobrenome, 'dataNacimento' => $dataNacimento];
+        $data = ['apelidoNome' => $nome, 'sobrenome' => $sobrenome];
 
         return view('bemvindo', $data);
     }
@@ -26,5 +26,15 @@ class SiteController extends Controller
     public function exit()
     {
         return view('sair');
+    }
+
+    public function users(Request $r)
+    {
+
+        $qnt = $r->qnt;
+
+        $data = ['quantidade' => $qnt];
+
+        return view('usuarios', $data);
     }
 }
