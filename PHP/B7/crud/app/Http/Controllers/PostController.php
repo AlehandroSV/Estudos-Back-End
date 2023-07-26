@@ -9,26 +9,18 @@ class PostController extends Controller
 {
     public function create(Request $r)
     {
-        $newPost = [
-            'title' => 'Meu primeiro Post',
-            'content' => 'Conteúdo Qualquer',
-            'author' => 'Alehandro Santos Vidal',
-        ];
+        $postDb = new Post();
 
-        // Forma convensional
-        // $post = new Post($newPost);
-        // $post->save();
+        $postDb->title = $r->title;
+        $postDb->content = $r->content;
+        $postDb->author = $r->author;
 
-        $post = new Post();
-        $post->title = 'Meu primeiro Post';
-        $post->content = 'Conteúdo Qualquer';
-        $post->author = 'Alehandro Santos Vidal';
-        $post->save();
+        $postDb->save();
 
-        dd($post);
+        return $postDb;
     }
 
-    public function read(Request $r)
+    public function read()
     {
         $post = new Post();
         $posts = $post->all();
@@ -43,5 +35,28 @@ class PostController extends Controller
         $post = Post::find($id);
 
         return $post;
+    }
+
+    public function update(Request $r)
+    {
+        $post = Post::where('id', '=', $r->id)->update([
+            'title' => "TesteUpdate",
+            'content' => "TesteUpdate",
+            'author' => "TesteUpdate",
+            'id' => $r->id
+        ]);
+
+        return $post;
+    }
+
+    public function delete(Request $r)
+    {
+        $post = Post::find($r->id);
+
+        if ($post) {
+            $post->delete();
+        }
+
+        return "Não existe Post com esse ID";
     }
 }
