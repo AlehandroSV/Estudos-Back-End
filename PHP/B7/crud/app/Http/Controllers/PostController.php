@@ -7,51 +7,79 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function create(Request $r)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $post = Post::all();
+
+        return $post;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         $postDb = new Post();
 
-        $postDb->title = $r->title;
-        $postDb->content = $r->content;
-        $postDb->author = $r->author;
+        $postDb->title = "Teste";
+        $postDb->content = "Teste";
+        $postDb->author = "Teste";
 
         $postDb->save();
 
         return $postDb;
     }
 
-    public function read()
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
-        $post = new Post();
-        $posts = $post->all();
-
-        return $posts;
+        //
     }
 
-    public function readById(Request $r)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        $id = $r->id;
-
         $post = Post::find($id);
 
         return $post;
     }
 
-    public function update(Request $r)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
-        $post = Post::where('id', '=', $r->id)->update([
+        $post = Post::find($id)->update([
             'title' => "TesteUpdate",
             'content' => "TesteUpdate",
             'author' => "TesteUpdate",
-            'id' => $r->id
+            'id' => $id
         ]);
 
         return $post;
     }
 
-    public function delete(Request $r)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
-        $post = Post::find($r->id);
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $post = Post::find($id);
 
         if ($post) {
             $post->delete();
